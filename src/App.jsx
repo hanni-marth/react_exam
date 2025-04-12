@@ -50,7 +50,7 @@ const App = () => {
     };
 
     const redirectToDocs = () => {
-        window.location.href = "http://127.0.0.1:5000/api/docs";
+        window.location.href = "https://18.221.29.230//api/docs";
     };
 
     return (

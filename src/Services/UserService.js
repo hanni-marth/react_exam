@@ -1,6 +1,6 @@
-const BASE_URL = "http://127.0.0.1:5000/users/";
-const CHECK_EMAIL_URL = "http://127.0.0.1:5000/users/check-email";
-const LOGIN_URL = "http://127.0.0.1:5000/users/login";
+const BASE_URL = "https://18.221.29.230//users/";
+const CHECK_EMAIL_URL = "https://18.221.29.230//users/check-email";
+const LOGIN_URL = "https://18.221.29.230//users/login";
 
 async function handleResponse(response) {
     try {
