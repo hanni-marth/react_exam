@@ -1,12 +1,4 @@
 import React, { useState } from "react";
-import {
-    TextField,
-    Button,
-    Typography,
-    Box,
-    Paper,
-    Stack
-} from "@mui/material";
 import { motion } from "framer-motion";
 
 const UserEditForm = ({ user, onUpdate, onCancel }) => {
@@ -33,76 +25,52 @@ const UserEditForm = ({ user, onUpdate, onCancel }) => {
     };
 
     return (
-        <Box>
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
             <motion.div
                 initial={{ opacity: 0, y: -40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
+                className="card shadow p-4"
+                style={{ maxWidth: "450px", width: "100%", borderRadius: "1rem", backgroundColor: "rgba(255,255,255,0.9)" }}
             >
-                <Paper
-                    elevation={6}
-                    sx={{
-                        backdropFilter: 'blur(6px)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.88)',
-                        borderRadius: 4,
-                        padding: 4,
-                        maxWidth: 450,
-                        width: '90%',
-                    }}
-                >
-                    <Typography variant="h5" align="center" gutterBottom sx={{ fontWeight: 'bold', color: '#4e342e' }}>
-                        Editar Usuario
-                    </Typography>
+                <h4 className="text-center fw-bold text-dark mb-4">Editar Usuario</h4>
 
-                    <Box component="form" onSubmit={handleSubmit}>
-                        <Stack spacing={2}>
-                            <TextField
-                                label="Nombre"
-                                name="name"
-                                fullWidth
-                                value={updatedUser.name}
-                                onChange={handleChange}
-                            />
-                            <TextField
-                                label="Correo"
-                                name="email"
-                                type="email"
-                                fullWidth
-                                value={updatedUser.email}
-                                onChange={handleChange}
-                            />
-                            <Stack direction="row" spacing={2} justifyContent="center">
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    sx={{
-                                        backgroundColor: '#6d4c41',
-                                        '&:hover': { backgroundColor: '#5d4037' },
-                                    }}
-                                >
-                                    Actualizar Usuario
-                                </Button>
-                                <Button
-                                    type="button"
-                                    variant="outlined"
-                                    onClick={onCancel}
-                                    sx={{
-                                        color: '#6d4c41',
-                                        borderColor: '#6d4c41',
-                                        '&:hover': {
-                                            backgroundColor: '#efebe9',
-                                            borderColor: '#5d4037',
-                                        },
-                                    }}
-                                >
-                                    Cancelar
-                                </Button>
-                            </Stack>
-                        </Stack>
-                    </Box>
-                </Paper>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Nombre</label>
+                        <input
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            value={updatedUser.name}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="form-label">Correo</label>
+                        <input
+                            type="email"
+                            name="email"
+                            className="form-control"
+                            value={updatedUser.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="d-flex justify-content-center gap-3">
+                        <button type="submit" className="btn btn-dark">
+                            Actualizar Usuario
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-outline-secondary"
+                            onClick={onCancel}
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
             </motion.div>
-        </Box>
+        </div>
     );
 };
 

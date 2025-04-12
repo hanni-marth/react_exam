@@ -1,18 +1,10 @@
 import React, { useState } from "react";
-import {
-    TextField,
-    Button,
-    Typography,
-    Box,
-    Paper,
-    Stack
-} from "@mui/material";
 
 const UserCreateForm = ({ onCreate, checkEmailExists }) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const validatePassword = (password) => {
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
@@ -41,104 +33,69 @@ const UserCreateForm = ({ onCreate, checkEmailExists }) => {
         const newUser = { name, email, password };
         onCreate(newUser);
 
-        setName('');
-        setEmail('');
-        setPassword('');
-        setError('');
+        setName("");
+        setEmail("");
+        setPassword("");
+        setError("");
     };
 
     const handleCancel = () => {
-        setName('');
-        setEmail('');
-        setPassword('');
-        setError('');
+        setName("");
+        setEmail("");
+        setPassword("");
+        setError("");
     };
 
     return (
-        <Box
-            sx={{
-                height: "80vh", // altura total de la pantalla
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "transparent", // color de fondo suave
-                padding: 2,
-            }}
-        >
-            <Paper
-                elevation={6}
-                sx={{
-                    backdropFilter: 'blur(6px)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.64)',
-                    borderRadius: 4,
-                    padding: 4,
-                    maxWidth: 450,
-                    width: '90%',
-                }}
-            >
-                <Typography variant="h5" align="center" gutterBottom sx={{ fontWeight: 'bold', color: '#4e342e' }}>
-                    Crear Nuevo Usuario
-                </Typography>
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+            <div className="card shadow p-4" style={{ maxWidth: "450px", width: "100%", borderRadius: "1rem" }}>
+                <h4 className="text-center text-dark fw-bold mb-4">Crear Nuevo Usuario</h4>
 
                 {error && (
-                    <Typography color="error" variant="body2" align="center" mb={2}>
+                    <div className="alert alert-danger text-center py-2" role="alert">
                         {error}
-                    </Typography>
+                    </div>
                 )}
 
-                <Box component="form" onSubmit={handleSubmit}>
-                    <Stack spacing={2}>
-                        <TextField
-                            label="Nombre"
-                            fullWidth
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Nombre</label>
+                        <input
+                            type="text"
+                            className="form-control"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
-                        <TextField
-                            label="Correo"
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Correo</label>
+                        <input
                             type="email"
-                            fullWidth
+                            className="form-control"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <TextField
-                            label="Contraseña"
+                    </div>
+                    <div className="mb-4">
+                        <label className="form-label">Contraseña</label>
+                        <input
                             type="password"
-                            fullWidth
+                            className="form-control"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <Stack direction="row" spacing={2} justifyContent="center">
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                sx={{
-                                    backgroundColor: '#6d4c41',
-                                    '&:hover': { backgroundColor: '#5d4037' },
-                                }}
-                            >
-                                Crear Usuario
-                            </Button>
-                            <Button
-                                type="button"
-                                variant="outlined"
-                                onClick={handleCancel}
-                                sx={{
-                                    color: '#6d4c41',
-                                    borderColor: '#6d4c41',
-                                    '&:hover': {
-                                        backgroundColor: '#efebe9',
-                                        borderColor: '#5d4037',
-                                    },
-                                }}
-                            >
-                                Cancelar
-                            </Button>
-                        </Stack>
-                    </Stack>
-                </Box>
-            </Paper>
-        </Box>
+                    </div>
+                    <div className="d-flex justify-content-center gap-3">
+                        <button type="submit" className="btn btn-dark">
+                            Crear Usuario
+                        </button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={handleCancel}>
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     );
 };
 

@@ -1,12 +1,4 @@
 import React, { useState } from "react";
-import {
-    TextField,
-    Button,
-    Typography,
-    Box,
-    Paper,
-    Link,
-} from "@mui/material";
 import { FaUser, FaLock } from "react-icons/fa";
 
 const LoginForm = ({ onLogin, onShowRegister }) => {
@@ -32,91 +24,50 @@ const LoginForm = ({ onLogin, onShowRegister }) => {
     };
 
     return (
-        <Box
-            sx={{
-                height: "100vh", // altura total de la pantalla
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "transparent", // color de fondo suave
-                padding: 2,
-            }}
-        >
-            <Paper
-                elevation={10}
-                sx={{
-                    backdropFilter: "blur(6px)",
-                    backgroundColor: "rgba(255, 255, 255, 0.59)",
-                    borderRadius: 4,
-                    padding: 4,
-                    maxWidth: 400,
-                    width: "100%",
-                    boxShadow: 3,
-                }}
-            >
-                <Typography
-                    variant="h5"
-                    align="center"
-                    gutterBottom
-                    sx={{ color: "#4e342e", fontWeight: "bold" }}
-                >
-                    Iniciar Sesión
-                </Typography>
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+            <div className="card shadow p-4" style={{ maxWidth: "400px", width: "100%", borderRadius: "1rem" }}>
+                <h4 className="text-center text-dark mb-4 fw-bold">Iniciar Sesión</h4>
                 {error && (
-                    <Typography color="error" variant="body2" align="center" mb={2}>
+                    <div className="alert alert-danger text-center py-2" role="alert">
                         {error}
-                    </Typography>
+                    </div>
                 )}
-                <Box component="form" onSubmit={handleSubmit} noValidate>
-                    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                        <FaUser style={{ marginRight: 8, color: "#6d4c41" }} />
-                        <TextField
-                            fullWidth
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3 d-flex align-items-center">
+                        <FaUser className="me-2 text-secondary" />
+                        <input
                             type="email"
-                            label="Correo Electrónico"
-                            variant="outlined"
+                            className="form-control"
+                            placeholder="Correo Electrónico"
                             value={correo}
                             onChange={(e) => setCorreo(e.target.value)}
                         />
-                    </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                        <FaLock style={{ marginRight: 8, color: "#6d4c41" }} />
-                        <TextField
-                            fullWidth
+                    </div>
+                    <div className="mb-3 d-flex align-items-center">
+                        <FaLock className="me-2 text-secondary" />
+                        <input
                             type="password"
-                            label="Contraseña"
-                            variant="outlined"
+                            className="form-control"
+                            placeholder="Contraseña"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                    </Box>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{
-                            mt: 2,
-                            backgroundColor: "green",
-                            "&:hover": {
-                                backgroundColor: "green",
-                            },
-                        }}
-                    >
+                    </div>
+                    <button type="submit" className="btn btn-success w-100 mt-2">
                         Iniciar Sesión
-                    </Button>
-                </Box>
-                <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                    </button>
+                </form>
+                <p className="text-center mt-3">
                     ¿No tienes cuenta?{" "}
-                    <Link
-                        component="button"
+                    <button
                         onClick={onShowRegister}
-                        sx={{ color: "#4e342e", fontWeight: "bold" }}
+                        className="btn btn-link text-decoration-none fw-bold text-dark"
                     >
                         Regístrate
-                    </Link>
-                </Typography>
-            </Paper>
-        </Box>
+                    </button>
+                </p>
+            </div>
+        </div>
     );
 };
 
